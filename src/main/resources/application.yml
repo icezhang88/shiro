@@ -1,0 +1,53 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: monitor
+  datasource:
+    url: jdbc:mysql://49.235.230.132:3306/login?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
+    username: root
+    password: qhlk@2017
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DataHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  redis:
+    host: 49.235.230.132
+    port: 6379
+    password: qhlk@2017
+    database: 0
+    jedis:
+      pool:
+        #最大连接数
+        max-active: 8
+        #最大阻塞等待时间(负数表示没限制)
+        max-wait: -1ms
+        #最大空闲
+        max-idle: 8
+        #最小空闲
+        min-idle: 0
+      timeout: 300s
+#mybatisPlus
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.shiro.entity
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  typeAliasesPackage: com.shiro.entity
+
+  global-config:
+    id-type: 0
+    field-strategy: 1
+    db-column-underline: true
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
